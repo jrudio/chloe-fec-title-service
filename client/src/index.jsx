@@ -22,22 +22,25 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    // this.generateTitle(this.state.listingID);
+    this.generateTitle(this.state.listingID);
   }
 
   generateTitle (id) {
 
     // useEffect(() => {
-    //   fetch('/title/:listing_id')
-    //     .then((res) => {
-    //       if (res.ok) {
-    //         console.log('res: ', res);
-    //         // return res.json();
-    //       }
-    //     })
-    //     .then((data) => {
-    //       console.log('data: ', data);
-    //     });
+      fetch(`/title/${id}`)
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+
+          throw res.statusText;
+        })
+        .then((data) => {
+          console.log('data: ', data);
+          this.setState(data)
+        })
+        .catch(err => console.log(err));
     // });
 
     // $.ajax({
@@ -68,4 +71,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app-chloe-title'));
