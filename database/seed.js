@@ -101,7 +101,7 @@ const seedDatabase = () => {
   }
 };
 
-seedDatabase();
+dbHelper.onReady(seedDatabase());
 
 module.exports.generateAdj = generateAdj;
 module.exports.generateNoun = generateNoun;
